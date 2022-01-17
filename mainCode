@@ -1,0 +1,24 @@
+CMCON = 7
+TRISB = %00000000
+TRISA = %11000000
+
+portb = %00000000
+pause 5000
+
+main:
+portb = %00001001
+if porta.6 = 0 then GOSUB line
+if porta.7 = 0 then GOSUB bot
+GOTO main
+
+line:
+portb = %00000101
+pause 2500
+if porta.6 = 0 then GOTO line
+RETURN
+
+bot:
+portb = %00001010
+if porta.6 = 0 then GOTO line
+if porta.7 then GOTO bot
+RETURN
